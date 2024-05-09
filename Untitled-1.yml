@@ -32,8 +32,13 @@ Resources:
               systemctl start mongod
 
               sudo su ec2-user
-              cd /home/ec2-user
+              cd /home/ec2-user/
 
+              echo "holaaaaaaaaaaaaaaaaaaaaaaaa"
+              pwd
+              echo "holaaaaaaaaaaaaaaaaaaaaaaaa"
+
+              touch ~/.bashrc
               curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
               
               export NVM_DIR="$HOME/.nvm"
