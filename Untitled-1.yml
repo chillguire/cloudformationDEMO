@@ -36,16 +36,21 @@ Resources:
 
               echo "holaaaaaaaaaaaaaaaaaaaaaaaa"
               pwd
+              $HOME
               echo "holaaaaaaaaaaaaaaaaaaaaaaaa"
 
-              touch ~/.bashrc
               curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
               
-              export NVM_DIR="$HOME/.nvm"
+              export NVM_DIR="/home/ec2-user/.nvm"
               [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
               [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
               
               nvm install --lts
+
+              cat <<EOF >> /home/ec2-user/.bashrc
+              export NVM_DIR="/.nvm"
+              [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+              EOF
           
               git clone https://github.com/chillguire/TEG-Software.git
               cd TEG-Software
