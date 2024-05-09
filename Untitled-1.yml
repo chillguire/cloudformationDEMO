@@ -24,13 +24,8 @@ Resources:
               yum update -y
               yum install -y git
 
-              curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-              source ~/.bashrc
-              
-              nvm install --lts
-
               touch /etc/yum.repos.d/mongodb-org-7.0.repo
-              printf "[mongodb-org-7.0]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/7.0/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://pgp.mongodb.com/server-7.0.asc\n" >> /etc/yum.repos.d/mongodb-org-7.0.repo
+              printf "[mongodb-org-7.0]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/7.0/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://pgp.mongodb.com/server-7.0.asc\n" >> /etc/yum.repos.d/mongodb-org-7.0.repo
 
               yum install -y mongodb-org
 
@@ -38,6 +33,15 @@ Resources:
 
               sudo su ec2-user
               cd /home/ec2-user
+
+              curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+              
+              export NVM_DIR="$HOME/.nvm"
+              [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+              [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+              
+              nvm install --lts
+          
               git clone https://github.com/chillguire/TEG-Software.git
               cd TEG-Software
               npm ci
