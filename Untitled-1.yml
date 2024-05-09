@@ -13,3 +13,33 @@ Resources:
     Properties:
       InstanceType: t2.micro
       ImageId: !Ref LatestAmiId
+      UserData:
+        "Fn::Base64":
+          !Sub |
+              #!/bin/bash
+
+              yum update -y
+              yum install -y git
+
+              curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+              source ~/.bashrc
+              
+              nvm install --lts
+
+              touch /etc/yum.repos.d/mongodb-org-7.0.repo
+              printf "[mongodb-org-7.0]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/7.0/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://pgp.mongodb.com/server-7.0.asc\n" >> /etc/yum.repos.d/mongodb-org-7.0.repo
+
+              yum install -y mongodb-org
+
+              systemctl start mongod
+
+              sudo su ec2-user
+              cd /home/ec2-user
+              git clone https://github.com/chillguire/TEG-Software.git
+              cd TEG-Software
+              npm ci
+
+              touch .env
+              printf "DB_URL = mongodb://127.0.0.1:27017/teg\nSESSION_SECRET = secreto\nMAIL_ACCOUNT = hola@hola.com\n" >> .env
+
+              npm start
