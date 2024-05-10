@@ -37,14 +37,13 @@ Resources:
               $HOME
               echo "holaaaaaaaaaaaaaaaaaaaaaaaa"
 
+              export HOME=/home/ec2-user
               touch /home/ec2-user/.bashrc
-              curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-              mv .nvm/ home/ec2-user/
-              export NVM_DIR="/home/ec2-user/.nvm"
-              [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+              sudo -u ec2-user -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
 
-              nvm install --lts
+              sudo -u ec2-user -c "nvm install --lts"
 
+              cd /home/ec2-user
               git clone https://github.com/chillguire/TEG-Software.git
               cd TEG-Software
               npm ci
