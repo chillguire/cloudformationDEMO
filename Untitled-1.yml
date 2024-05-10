@@ -39,9 +39,9 @@ Resources:
 
               export HOME=/home/ec2-user
               touch /home/ec2-user/.bashrc
-              sudo -u ec2-user -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
-
-              sudo -u ec2-user -c "nvm install --lts"
+              sudo -u ec2-user bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash'
+              sudo -u ec2-user bash -c 'source ~/.bashrc'
+              sudo -u ec2-user bash -c 'nvm install --lts'
 
               cd /home/ec2-user
               git clone https://github.com/chillguire/TEG-Software.git
