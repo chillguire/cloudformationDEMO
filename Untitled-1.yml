@@ -37,20 +37,13 @@ Resources:
               $HOME
               echo "holaaaaaaaaaaaaaaaaaaaaaaaa"
 
+              touch /home/ec2-user/.bashrc
               curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-              
-              cat > /tmp/subscript.sh << EOF
-              echo 'export NVM_DIR="/home/ec2-user/.nvm"' >> /home/ec2-usr/.bashrc
-              echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> /home/ec2-user/.bashrc
-
-              . /home/ec2-user/.nvm/nvm.sh
-              . /home/ec2-user/.bashrc
+              mv .nvm/ home/ec2-user/
+              export NVM_DIR="/home/ec2-user/.nvm"
+              [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
               nvm install --lts
-              EOF
-
-              chown ec2-user:ec2-user /tmp/subscript.sh && chmod a+x /tmp/subscript.sh
-              sleep 1; su - ec2-user -c "/tmp/subscript.sh"
 
               git clone https://github.com/chillguire/TEG-Software.git
               cd TEG-Software
