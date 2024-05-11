@@ -40,9 +40,10 @@ Resources:
               cd /home/ec2-user
               git clone https://github.com/chillguire/TEG-Software.git
               cd TEG-Software
-              npm ci
+
+              sudo -u ec2-user bash -c 'npm ci'
 
               touch .env
               printf "DB_URL = mongodb://127.0.0.1:27017/teg\nSESSION_SECRET = secreto\nMAIL_ACCOUNT = hola@hola.com\n" >> .env
 
-              npm start
+              sudo -u ec2-user bash -c 'npm start'
