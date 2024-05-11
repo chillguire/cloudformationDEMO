@@ -5,7 +5,7 @@ Description: EC2 for thesis
 Parameters:
   LatestAmiId:
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
-    Default: /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64
 
 Resources:
   EC2Instance:
@@ -25,7 +25,7 @@ Resources:
               yum install -y git
 
               touch /etc/yum.repos.d/mongodb-org-7.0.repo
-              printf "[mongodb-org-7.0]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/7.0/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://pgp.mongodb.com/server-7.0.asc\n" >> /etc/yum.repos.d/mongodb-org-7.0.repo
+              printf "[mongodb-org-7.0]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/7.0/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://pgp.mongodb.com/server-7.0.asc\n" >> /etc/yum.repos.d/mongodb-org-7.0.repo
 
               yum install -y mongodb-org
 
