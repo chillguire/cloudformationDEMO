@@ -33,17 +33,17 @@ Resources:
 
               export HOME=/home/ec2-user
               touch /home/ec2-user/.bashrc
-              sudo -u ec2-user bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash'
+              sudo -H -u ec2-user bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash'
 
-              sudo -u ec2-user bash -c '. ~/.nvm/nvm.sh && nvm install --lts && nvm use --lts'
+              sudo -H -u ec2-user bash -c '. ~/.nvm/nvm.sh && nvm install --lts && nvm use --lts && node -v && npm -v'
 
               cd /home/ec2-user
               git clone https://github.com/chillguire/TEG-Software.git
               cd TEG-Software
 
-              sudo -u ec2-user bash -c 'npm ci'
+              sudo -H -u ec2-user bash -c 'npm ci'
 
               touch .env
               printf "DB_URL = mongodb://127.0.0.1:27017/teg\nSESSION_SECRET = secreto\nMAIL_ACCOUNT = hola@hola.com\n" >> .env
 
-              sudo -u ec2-user bash -c 'npm start'
+              sudo -H -u ec2-user bash -c 'npm start'
