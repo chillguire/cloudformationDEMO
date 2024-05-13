@@ -32,13 +32,15 @@ Resources:
               systemctl start mongod
 
               export HOME=/home/ec2-user
+              cd /home/ec2-user
               touch /home/ec2-user/.bashrc
+              
               sudo -H -u ec2-user bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash'
 
               sudo -H -u ec2-user bash -c '. ~/.nvm/nvm.sh && nvm install --lts && nvm use --lts && node -v && npm -v'
 
-              cd /home/ec2-user
-              git clone https://github.com/chillguire/TEG-Software.git
+              sudo -H -u ec2-user bash -c 'git clone https://github.com/chillguire/TEG-Software.git'
+              
               cd TEG-Software
 
               sudo -H -u ec2-user bash -c '. ~/.nvm/nvm.sh && nvm ls && nvm use --lts && node -v && npm -v && npm ci'
