@@ -13,6 +13,9 @@ Resources:
     Properties:
       InstanceType: t2.micro
       ImageId: !Ref LatestAmiId
+      Tags:
+        - Key: Name
+          Value: TEG-Software
       SecurityGroupIds:
         - sg-08f7645e967dcfdab
         - sg-0ed0873533f853c30
@@ -47,7 +50,7 @@ Resources:
               printf "DB_URL = mongodb://127.0.0.1:27017/teg\nSESSION_SECRET = secreto\nMAIL_ACCOUNT = hola@hola.com\n" >> .env
 
               sudo -H -u ec2-user bash -c '. ~/.nvm/nvm.sh && nvm ls && nvm use --lts && node -v && npm -v && npm ci && npm install pm2 -g && pm2 start server.js'
-
+      
 Outputs:
   PublicIp:
     Value: !GetAtt EC2Instance.PublicIp
