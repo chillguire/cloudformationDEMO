@@ -27,12 +27,12 @@ Resources:
           !Sub |
               #!/bin/bash
 
+              # Error handling - ResourceSignal failure
               notify_failure() {
                 echo 'ERROR'
                 /opt/aws/bin/cfn-signal -e 1 --stack=EC2Stack --resource=EC2Instance
                 exit 1
               }
-
               trap 'notify_failure' ERR
 
               yum update -y
@@ -53,7 +53,7 @@ Resources:
 
               sudo -H -u ec2-user bash -c '. ~/.nvm/nvm.sh && nvm install --lts && nvm use --lts && node -v && npm -v'
 
-              sudo -H -u ec2-user bash -c 'git clone https://github.com/chillguire/TEG-Software.gitt'
+              sudo -H -u ec2-user bash -c 'git clone https://github.com/chillguire/TEG-Software.git'
               
               cd TEG-Software
 
