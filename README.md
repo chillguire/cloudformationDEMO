@@ -3,3 +3,5 @@
 * secretos de la aplicacion per se
 
 * que pasa siuserdata falla (clonacion de app, etc)
+
+* si pausas la instancia y haces deploy de infraestructura, falla
