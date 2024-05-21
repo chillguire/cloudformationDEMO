@@ -10,9 +10,9 @@ Parameters:
 Resources:
   EC2Instance:
     Type: AWS::EC2::Instance
-    #CreationPolicy:
-        #ResourceSignal:
-          # Timeout: PT5M
+    CreationPolicy:
+        ResourceSignal:
+          Timeout: PT5M
     Properties:
       InstanceType: t2.micro
       ImageId: !Ref LatestAmiId
@@ -33,7 +33,7 @@ Resources:
                 /opt/aws/bin/cfn-signal -e 1 --stack=EC2Stack --resource=EC2Instance
                 exit 1
               }
-              #trap 'notify_failure' ERR
+              trap 'notify_failure' ERR
 
               yum update -y
               yum install -y git nginx
@@ -67,7 +67,7 @@ Resources:
               service nginx restart
 
               echo 'todo fino'
-              # /opt/aws/bin/cfn-signal -e 0 --stack=EC2Stack --resource=EC2Instance
+              /opt/aws/bin/cfn-signal -e 0 --stack=EC2Stack --resource=EC2Instance
               # Error handling - ResourceSignal success
 
 Outputs:
