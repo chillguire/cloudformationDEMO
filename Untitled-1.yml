@@ -33,7 +33,7 @@ Resources:
                 /opt/aws/bin/cfn-signal -e 1 --stack=EC2Stack --resource=EC2Instance
                 exit 1
               }
-              trap 'notify_failure' ERR
+              #trap 'notify_failure' ERR
 
               yum update -y
               yum install -y git nginx
