@@ -12,5 +12,7 @@
 * lambda si la instancia ya esta corriendo
 * si la instancia no existe
 ---
+* si ya esta iniciado para ahorrarse la llamada al lambda como hacer? cliente react y lambda
+---
 * evitar ataques con WAF?
 	* apagar cosas si salen del free tier con cloudwatch o asi?

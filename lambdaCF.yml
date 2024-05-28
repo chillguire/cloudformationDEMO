@@ -4,6 +4,15 @@ Description: Portfolio serverless backend in Lambda
 
 Resources:
 
+  CognitoPool:
+    Type: AWS::Cognito::IdentityPool
+    Properties:
+      AllowUnauthenticatedIdentities: true
+  CognitoPoolRole:
+    Type: AWS::Cognito::IdentityPoolRoleAttachment
+    IdentityPoolId: !Ref CognitoPool
+    Roles:
+      "unauthenticated": arn:aws:iam::062802124042:role/service-role/IAMCOGNITOTEST
   MainLambda:
     Type: AWS::Lambda::Function
     Properties:
