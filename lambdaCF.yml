@@ -10,9 +10,10 @@ Resources:
       AllowUnauthenticatedIdentities: true
   CognitoPoolRole:
     Type: AWS::Cognito::IdentityPoolRoleAttachment
-    IdentityPoolId: !Ref CognitoPool
-    Roles:
-      "unauthenticated": arn:aws:iam::062802124042:role/service-role/IAMCOGNITOTEST
+    Properties:
+      IdentityPoolId: !Ref CognitoPool
+      Roles:
+        "unauthenticated": arn:aws:iam::062802124042:role/service-role/IAMCOGNITOTEST
   MainLambda:
     Type: AWS::Lambda::Function
     Properties:
