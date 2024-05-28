@@ -11,7 +11,7 @@ Resources:
       Timeout: 180
       Role: arn:aws:iam::062802124042:role/service-role/uwu-role-229eprv6
       Handler: index.lambda_handler
-      Runtime: python3.8
+      Runtime: python3.12
       Code:
         ZipFile: |
           import boto3
