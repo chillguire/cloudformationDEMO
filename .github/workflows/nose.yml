@@ -23,6 +23,6 @@ jobs:
       - name: Deploy with CloudFormation
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
-          name: EC2Stack
+          name: LambdaStack
           template: lambdaCF.yml
           #no-fail-on-empty-changeset: "1"
