@@ -66,6 +66,12 @@ Resources:
 
               service nginx restart
 
+              # Script que inicia el servicio cuando se reanuda la instancia
+              cd /var/lib/cloud/scripts/per-boot
+              sudo touch start.sh
+              chmod 755 start.sh
+              printf '#!/bin/bash\n\nsu - ec2-user -c "cd /home/ec2-user/TEG-Software && pm2 start server.js"\nsystemctl start nginx' > /var/lib/cloud/scripts/per-boot/start.sh
+
               echo 'todo fino'
               /opt/aws/bin/cfn-signal -e 0 --stack=EC2Stack --resource=EC2Instance
               # Error handling - ResourceSignal success
