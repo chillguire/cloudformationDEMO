@@ -66,6 +66,8 @@ Resources:
 
               service nginx restart
 
+              sudo shutdown now -h # turn off after creation
+
               # Script que inicia el servicio cuando se reanuda la instancia
               cd /var/lib/cloud/scripts/per-boot
               sudo touch start.sh
