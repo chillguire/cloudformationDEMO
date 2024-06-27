@@ -97,7 +97,7 @@ Resources:
               - sts:AssumeRoleWithWebIdentity
             Condition:
               StringEquals:
-                "cognito-identity.amazonaws.com:aud": "us-east-1:7585b654-9810-41ec-aa0e-949350a9718a"
+                "cognito-identity.amazonaws.com:aud": !Ref CognitoPool
               ForAnyValue:StringLike:
                 "cognito-identity.amazonaws.com:amr": "unauthenticated"
       Path: /
