@@ -139,6 +139,7 @@ Resources:
           import boto3
           from botocore.exceptions import ClientError
           import json
+          import os
           from datetime import datetime, timedelta
           import dateutil.tz
 
@@ -179,9 +180,9 @@ Resources:
                 ScheduleExpressionTimezone = currentTimezone,
                 State = 'ENABLED',
                 Target = {
-                  'Arn': 'arn:aws:lambda:us-east-1:062802124042:function:uwu2',
+                  'Arn': os.environ['ShutDownLambdaARN'],
                   'Input': '{{"project": "{}"}}'.format(resourceName),
-                  'RoleArn': 'arn:aws:iam::062802124042:role/eventbridgeassume',
+                  'RoleArn': os.environ['EventBridgeAssumeRoleARN'],
                   # 'EventBridgeParameters': {
                   # 	'DetailType': 'string',
                   # 	'Source': 'string'
@@ -203,9 +204,9 @@ Resources:
                 ScheduleExpressionTimezone = currentTimezone,
                 State = 'ENABLED',
                 Target = {
-                  'Arn': 'arn:aws:lambda:us-east-1:062802124042:function:uwu2',
+                  'Arn': os.environ['ShutDownLambdaARN'],
                   'Input': '{{"project": "{}"}}'.format(resourceName),
-                  'RoleArn': 'arn:aws:iam::062802124042:role/eventbridgeassume',
+                  'RoleArn': os.environ['EventBridgeAssumeRoleARN'],
                   # 'EventBridgeParameters': {
                   # 	'DetailType': 'string',
                   # 	'Source': 'string'
