@@ -27,6 +27,7 @@ Resources:
                   - tag:GetResources
                   - ec2:StartInstances
                   - ec2:StopInstances
+                  - ec2:DescribeInstances
                   - scheduler:GetSchedule
                   - scheduler:CreateSchedule 
                   - scheduler:UpdateSchedule
@@ -60,6 +61,7 @@ Resources:
                 Action:
                   - tag:GetResources
                   - ec2:StopInstances
+                  - ec2:DescribeInstances
                 Resource: "*"
   EventBridgeAssumeRole:
     Type: AWS::IAM::Role
