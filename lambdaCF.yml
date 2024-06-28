@@ -34,6 +34,11 @@ Resources:
                 Resource: "*"
               - Effect: Allow
                 Action:
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Ref LambdaLogGroup
+              - Effect: Allow
+                Action:
                   - iam:PassRole
                 Resource: arn:aws:iam::*:role/*
                 Condition:
@@ -63,6 +68,11 @@ Resources:
                   - ec2:StopInstances
                   - ec2:DescribeInstances
                 Resource: "*"
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Ref LambdaLogGroup
   EventBridgeAssumeRole:
     Type: AWS::IAM::Role
     Properties:
@@ -84,7 +94,8 @@ Resources:
               - Effect: Allow
                 Action:
                   - lambda:InvokeFunction
-                Resource: "*"
+                Resource:
+                  - !Ref ShutDownLambda
   CognitoPoolRolePolicy:
     Type: AWS::IAM::Role
     Properties:
@@ -112,8 +123,13 @@ Resources:
                 Action:
                   - cognito-identity:GetCredentialsForIdentity
                   - lambda:InvokeFunction
-                Resource: "*"
+                Resource:
+                  - !Ref MainLambda
   # Roles y permisos END
+  ServerlessPortfolioBackendLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 30
   CognitoPoolRole:
     Type: AWS::Cognito::IdentityPoolRoleAttachment
     Properties:
@@ -167,7 +183,7 @@ Resources:
             try:
               eventBridgeScheduler = boto3.client('scheduler')
               currentTimezone = 'America/Caracas'
-              scheduledTime = datetime.now(dateutil.tz.gettz(currentTimezone)) + timedelta(hours = 1)
+              scheduledTime = datetime.now(dateutil.tz.gettz(currentTimezone)) + timedelta(hours = 0.1)
               scheduledTime = scheduledTime.strftime('%Y-%m-%dT%H:%M:%S')
               scheduleExists = eventBridgeScheduler.get_schedule(
                 Name = '{}_{}_{}'.format(resourceName, resourceDetails['service'], resourceDetails['resource_type']),
