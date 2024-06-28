@@ -95,7 +95,7 @@ Resources:
                 Action:
                   - lambda:InvokeFunction
                 Resource:
-                  - !Ref ShutDownLambda
+                  - !GetAtt ShutDownLambda.Arn
   CognitoPoolRolePolicy:
     Type: AWS::IAM::Role
     Properties:
@@ -124,7 +124,7 @@ Resources:
                   - cognito-identity:GetCredentialsForIdentity
                   - lambda:InvokeFunction
                 Resource:
-                  - !Ref MainLambda
+                  - !GetAtt MainLambda.Arn
   # Roles y permisos END
   ServerlessPortfolioBackendLogGroup:
     Type: AWS::Logs::LogGroup
