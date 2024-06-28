@@ -32,11 +32,11 @@ Resources:
                   - scheduler:CreateSchedule 
                   - scheduler:UpdateSchedule
                 Resource: "*"
-              - Effect: Allow
-                Action:
-                  - logs:CreateLogStream
-                  - logs:PutLogEvents
-                Resource: !Ref ServerlessPortfolioBackendLogGroup
+              # - Effect: Allow
+              #   Action:
+              #     - logs:CreateLogStream
+              #     - logs:PutLogEvents
+              #   Resource: !Ref ServerlessPortfolioBackendLogGroup
               - Effect: Allow
                 Action:
                   - iam:PassRole
