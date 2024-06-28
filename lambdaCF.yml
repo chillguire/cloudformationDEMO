@@ -36,7 +36,7 @@ Resources:
                 Action:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
-                Resource: !Ref ServerlessPortfolioBackendLogGroup
+                Resource: !GetAtt ServerlessPortfolioBackendLogGroup.Arn
               - Effect: Allow
                 Action:
                   - iam:PassRole
@@ -72,7 +72,7 @@ Resources:
                 Action:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
-                Resource: !Ref ServerlessPortfolioBackendLogGroup
+                Resource: !GetAtt ServerlessPortfolioBackendLogGroup.Arn
   EventBridgeAssumeRole:
     Type: AWS::IAM::Role
     Properties:
