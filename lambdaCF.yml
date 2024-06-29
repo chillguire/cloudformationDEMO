@@ -68,11 +68,11 @@ Resources:
                   - ec2:StopInstances
                   - ec2:DescribeInstances
                 Resource: "*"
-              - Effect: Allow
-                Action:
-                  - logs:CreateLogStream
-                  - logs:PutLogEvents
-                Resource: !GetAtt ServerlessPortfolioBackendLogGroup.Arn
+              # - Effect: Allow
+              #   Action:
+              #     - logs:CreateLogStream
+              #     - logs:PutLogEvents
+              #   Resource: !GetAtt ServerlessPortfolioBackendLogGroup.Arn
   EventBridgeAssumeRole:
     Type: AWS::IAM::Role
     Properties:
