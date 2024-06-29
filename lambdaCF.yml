@@ -129,7 +129,7 @@ Resources:
   ServerlessPortfolioBackendLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: !Join ['/', ['/aws/lambda', !Ref MainLambda]]
+      LogGroupName: '/aws/lambda/MainLambdaPortfolio'
       RetentionInDays: 30
   CognitoPoolRole:
     Type: AWS::Cognito::IdentityPoolRoleAttachment
