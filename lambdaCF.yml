@@ -36,7 +36,7 @@ Resources:
                 Action:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
-                Resource: !GetAtt ServerlessPortfolioBackendLogGroup.Arn
+                Resource: !GetAtt MainLambdaPortfolioLogGroup.Arn
               - Effect: Allow
                 Action:
                   - iam:PassRole
@@ -68,11 +68,11 @@ Resources:
                   - ec2:StopInstances
                   - ec2:DescribeInstances
                 Resource: "*"
-              # - Effect: Allow
-              #   Action:
-              #     - logs:CreateLogStream
-              #     - logs:PutLogEvents
-              #   Resource: !GetAtt ServerlessPortfolioBackendLogGroup.Arn
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !GetAtt ShutDownLambdaPortfolioLogGroup.Arn
   EventBridgeAssumeRole:
     Type: AWS::IAM::Role
     Properties:
@@ -126,10 +126,15 @@ Resources:
                 Resource:
                   - !GetAtt MainLambda.Arn
   # Roles y permisos END
-  ServerlessPortfolioBackendLogGroup:
+  MainLambdaPortfolioLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: '/aws/lambda/MainLambdaPortfolio'
+      RetentionInDays: 30
+  ShutDownLambdaPortfolioLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: '/aws/lambda/ShutDownLambdaPortfolio'
       RetentionInDays: 30
   CognitoPoolRole:
     Type: AWS::Cognito::IdentityPoolRoleAttachment
